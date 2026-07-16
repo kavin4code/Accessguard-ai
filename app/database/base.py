@@ -31,6 +31,7 @@ class Base(DeclarativeBase):
 
 # Model imports — required so SQLAlchemy registers each table in Base.metadata.
 # Add every new model here as it is created in future phases.
-from app.models.user import User              # noqa: E402, F401
-from app.models.role import Role              # noqa: E402, F401
-from app.models.permission import Permission  # noqa: E402, F401
+from app.models.user import User                          # noqa: E402, F401
+from app.models.role import Role                          # noqa: E402, F401
+from app.models.permission import Permission              # noqa: E402, F401
+from app.models.role_assignment import RoleAssignment     # noqa: E402, F401
