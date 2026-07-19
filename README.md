@@ -138,14 +138,18 @@ uvicorn main:app --reload
 ## Development Phases
 
 | Phase | Description | Status |
-|-------|-------------|--------|
+|------:|-------------|:------:|
 | 0 | Project skeleton and configuration | ✅ Complete |
-| 1 | Database models and migrations | 🔜 Planned |
-| 2 | Authentication — JWT and bcrypt | 🔜 Planned |
-| 3 | Role-Based Access Control (RBAC) | 🔜 Planned |
-| 4 | Broken Access Control demos | 🔜 Planned |
-| 5 | Detection and prevention middleware | 🔜 Planned |
-| 6 | Security dashboard | 🔜 Planned |
+| 1 | Database foundation (FastAPI, PostgreSQL & SQLAlchemy setup) | ✅ Complete |
+| 2 | Database models (RBAC & Audit Logging) | ✅ Complete |
+| 3 | Database migrations (Alembic) | 🔜 Planned |
+| 4 | Authentication (JWT & bcrypt) | ⏳ Planned |
+| 5 | Role-Based Access Control (RBAC Engine) | ⏳ Planned |
+| 6 | Broken Access Control demonstrations | ⏳ Planned |
+| 7 | Detection & prevention middleware | ⏳ Planned |
+| 8 | Security dashboard | ⏳ Planned |
+| 9 | Testing & validation | ⏳ Planned |
+| 10 | Deployment & documentation | ⏳ Planned |
 
 ---
 
