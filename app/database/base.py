@@ -36,3 +36,4 @@ from app.models.role import Role                              # noqa: E402, F401
 from app.models.permission import Permission                  # noqa: E402, F401
 from app.models.role_assignment import RoleAssignment         # noqa: E402, F401
 from app.models.role_permission import RolePermission         # noqa: E402, F401
+from app.models.audit_log import AuditLog                     # noqa: E402, F401
