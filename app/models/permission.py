@@ -19,7 +19,7 @@ details. For example, delete_user triggers a soft delete
 
 from datetime import datetime
 
-from sqlalchemy import Boolean, DateTime, Integer, String, Text, func
+from sqlalchemy import Boolean, DateTime, Integer, String, Text, func, text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.database.base import Base
@@ -40,34 +40,44 @@ class Permission(Base):
 
     # Primary key — auto-incremented by PostgreSQL
     id: Mapped[int] = mapped_column(
-        Integer, primary_key=True, autoincrement=True)
+        Integer,
+        primary_key=True,
+        autoincrement=True,
+    )
 
     # Internal permission identifier — unique, indexed, immutable after creation.
     # Must follow the <action>_<resource> pattern.
-    # Examples: view_user, create_user, edit_user, delete_user,
-    #           assign_role, view_audit_log, export_audit_log
+    # Examples:
+    #   view_user, create_user, edit_user, delete_user,
+    #   assign_role, view_audit_log, export_audit_log
     name: Mapped[str] = mapped_column(
-        String(100), unique=True, nullable=False, index=True)
+        String(100),
+        unique=True,
+        nullable=False,
+        index=True,
+    )
 
-    # Human-readable explanation of what this permission allows — editable
-    description: Mapped[str] = mapped_column(Text, nullable=False)
+    # Human-readable explanation of what this permission allows — editable.
+    description: Mapped[str] = mapped_column(
+        Text,
+        nullable=False,
+    )
 
-    # False by default at the database level — custom permissions created at
-    # runtime are not system permissions.
-    # Built-in permissions seeded at startup must explicitly set is_system=True.
-    # The security layer will use this flag to block deletion or renaming.
+    # False by default at the database level.
+    # Built-in permissions seeded at startup explicitly set this to True.
     is_system: Mapped[bool] = mapped_column(
         Boolean,
         nullable=False,
-        server_default=func.false(),
+        server_default=text("false"),
     )
 
-    # Timezone-aware timestamps managed at the database level
+    # Timezone-aware timestamps managed at the database level.
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
         nullable=False,
         server_default=func.now(),
     )
+
     updated_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
         nullable=False,
@@ -77,5 +87,7 @@ class Permission(Base):
 
     def __repr__(self) -> str:
         return (
-            f"<Permission id={self.id} name={self.name!r} system={self.is_system}>"
+            f"<Permission id={self.id} "
+            f"name={self.name!r} "
+            f"system={self.is_system}>"
         )
